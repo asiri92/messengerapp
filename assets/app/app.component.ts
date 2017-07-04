@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MessageService } from "./messages/message.service";
 //import { Message } from './messages/message.model';
 
 @Component({
@@ -17,7 +18,8 @@ import { Component } from '@angular/core';
             font-size: 12px;
             width: 19%;
         }
-    `]
+    `],
+    providers :[MessageService]    
 })
 export class AppComponent {
     //component = "Some Content";
