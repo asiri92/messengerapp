@@ -20,7 +20,11 @@ export class MessageInputComponent{
             //console.log(form)
           //console.log(value);  
          const message = new Message(form.value.content,'Asiri');
-         this.messageService.addMessage(message);
+         this.messageService.addMessage(message)
+            .subscribe(
+                data => console.log(data),
+                error => console.error(error)
+            );
          form.resetForm(); // reset form values
     }
 }

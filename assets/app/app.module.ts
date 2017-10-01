@@ -13,6 +13,7 @@ import { routing } from "./app.routing";
 import { LogoutComponent } from "./auth/logout.component";
 import { SignupComponent } from "./auth/signup.component";
 import { SigninComponent } from "./auth/signin.component";
+import { HttpModule } from '@angular/http';//unlocks the Angular2 Http Service
 
 @NgModule({
     declarations: [
@@ -28,7 +29,12 @@ import { SigninComponent } from "./auth/signin.component";
         SigninComponent
 
     ],
-    imports: [BrowserModule, FormsModule, routing, ReactiveFormsModule],//added routing after exporting to set out custom routes
+    imports: [
+        BrowserModule, 
+        FormsModule, 
+        routing, //added routing after exporting to set out custom routes
+        ReactiveFormsModule,
+        HttpModule],
     bootstrap: [AppComponent]
 })
 export class AppModule {
