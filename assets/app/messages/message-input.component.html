@@ -1,5 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm" ngNativeValidate>
     <div class="form-group">
         <label for="content">Content</label>
         <input 
@@ -8,8 +8,7 @@
             class="form-control"
             ngModel
             name="content"
-            required
-        > 
+            required/>
       </div>
       <button class="btn btn-primary" type="submit">Save</button>  
   </form>
