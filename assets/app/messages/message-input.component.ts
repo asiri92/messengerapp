@@ -1,5 +1,5 @@
 
-import { Component } from "@angular/core";
+import { Component,OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 
 import { MessageService } from "./message.service";
@@ -12,19 +12,42 @@ import { Message } from "./message.model";
     //providers: [MessageService]
 })
 
-export class MessageInputComponent{
+export class MessageInputComponent implements OnInit{
+    message: Message;
 
     constructor(private messageService: MessageService){}
 
     onSubmit(form: NgForm){
             //console.log(form)
-          //console.log(value);  
-         const message = new Message(form.value.content,'Asiri');
-         this.messageService.addMessage(message)
+          //console.log(value);
+        if(this.message){
+            //Edit
+            this.message.content = form.value.content;
+            //console.log(JSON.stringify(form.value.content));
+            this.messageService.updateMessage(this.message)
             .subscribe(
-                data => console.log(data),
-                error => console.error(error)
+                result => console.log(result)
             );
-         form.resetForm(); // reset form values
+            this.message = null;
+        } else{
+            //Create
+            const message = new Message(form.value.content,'Asiri');
+            this.messageService.addMessage(message)
+               .subscribe(
+                   data => console.log(data),
+                   error => console.error(error)
+               );
+        }
+        
+        form.resetForm(); // reset form values
     }
+    onClear(form:NgForm){
+        this.message = null;
+        form.resetForm();
+    }
+    ngOnInit(){
+        this.messageService.messageIsEdit.subscribe(
+            (message: Message) => this.message = message
+        );
+    };
 }

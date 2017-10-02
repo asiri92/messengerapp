@@ -1,4 +1,4 @@
-import { Component, Input,Output,EventEmitter } from "@angular/core";
+import { Component, Input} from "@angular/core";
 import { Message } from "./message.model";
 import { MessageService } from "./message.service";
 
@@ -22,7 +22,7 @@ import { MessageService } from "./message.service";
 })     
 export class MessageComponent {
     @Input('inputMessage') message: Message;
-    @Output() editClicked =  new EventEmitter<string>();
+    //@Output() editClicked =  new EventEmitter<string>();
 
     //color = 'red';
 
@@ -30,10 +30,14 @@ export class MessageComponent {
 
     onEdit(){
         //alert('it workerd');
-        this.editClicked.emit('Voila,a new value');
+        //this.editClicked.emit('Voila,a new value');
+        this.messageService.editMessage(this.message);
     }
 
     onDelete(){
-            this.messageService.deleteMessage(this.message);
+            this.messageService.deleteMessage(this.message)
+            .subscribe(
+                result => console.log(result)
+            );
     }
 }
