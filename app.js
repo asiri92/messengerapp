@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
+var userRoutes = require('./routes/user');
 
 var app = express();
 mongoose.connect('127.0.0.1:27017/node-angular');
@@ -32,6 +33,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/message', messageRoutes); // order of this route is important. hence messageRoute comes first
+app.use('/user', userRoutes);
 app.use('/', appRoutes);
 
 

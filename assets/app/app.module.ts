@@ -14,6 +14,7 @@ import { LogoutComponent } from "./auth/logout.component";
 import { SignupComponent } from "./auth/signup.component";
 import { SigninComponent } from "./auth/signin.component";
 import { HttpModule } from '@angular/http';//unlocks the Angular2 Http Service
+import {AuthService} from "./auth/auth.service";
 
 @NgModule({
     declarations: [
@@ -34,7 +35,9 @@ import { HttpModule } from '@angular/http';//unlocks the Angular2 Http Service
         FormsModule, 
         routing, //added routing after exporting to set out custom routes
         ReactiveFormsModule,
-        HttpModule],
+        HttpModule
+    ],
+    providers: [AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
