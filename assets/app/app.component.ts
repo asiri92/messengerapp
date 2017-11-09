@@ -18,8 +18,7 @@ import { MessageService } from "./messages/message.service";
             font-size: 12px;
             width: 19%;
         }
-    `],
-    providers :[MessageService]    
+    `]  
 })
 export class AppComponent {
     //component = "Some Content";
